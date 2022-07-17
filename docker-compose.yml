@@ -25,11 +25,14 @@ services:
     container_name: crawler_api
     build:
       context: .
+    env_file:
+      - crawler-api/.env
     environment:
       DB_SCHEMA: postgres
       DB_USER: postgres
       DB_PASSWORD: postgres
       DB_HOST: postgres
+      COVALENT_API_KEY: ckey_f57b943596fb4bada55cf1e8656
     depends_on:
       - postgres
     ports:
