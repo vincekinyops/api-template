@@ -7,12 +7,13 @@
 var app = require('../app');
 var debug = require('debug')('crawler-api:server');
 var http = require('http');
+var db = require('../db')
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3003');
+var port = normalizePort(process.env.PORT || '3030');
 app.set('port', port);
 
 /**
@@ -23,11 +24,22 @@ var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
+ * 
+ * Initialize DB
  */
+db.connection.sync()
+  .then(() => {
+    console.info('Database Initialized')
+    server.listen(port, () => {
+      console.info('LISTENING on PORT: ', port)
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+      server.on('error', onError);
+      server.on('listening', onListening);
+    });
+  })
+  .catch(() => {
+    console.error('Database failed to initialize')
+  })
 
 /**
  * Normalize a port into a number, string, or false.

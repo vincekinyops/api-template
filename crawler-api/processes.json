@@ -1,16 +1,18 @@
 {
 	"apps": [
 		{
-			"name": "api",
+			"name": "crawler-api",
 			"script": "./bin/www",
+			"watch": ["crawler-api/*"],
 			"merge_logs": true,
-			"max_restarts": 20,
-			"instances": 4,
+			"max_restarts": 5,
+			"instances": 1,
 			"max_memory_restart": "200M",
 			"env": {
-				"PORT": 3000,
+				"PORT": 3030,
 				"NODE_ENV": "production"
-			}
+			},
+			"ignore_watch" : ["node_modules"]
 		}
 	]
 }

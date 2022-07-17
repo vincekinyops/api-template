@@ -7,5 +7,5 @@ RUN npm install
 RUN npm install --save pm2
 RUN chown -R app /opt/app
 USER app
-EXPOSE 3000
+EXPOSE 3030
 CMD [ "npm", "run", "pm2" ]

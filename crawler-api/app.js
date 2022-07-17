@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var createError = require('http-errors');
 
 var indexRouter = require('./routes/index');
 var personsRouter = require('./routes/persons');
@@ -37,8 +38,7 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  res.status(err.status || 500).send(err);
 });
 
 module.exports = app;

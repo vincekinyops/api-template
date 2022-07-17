@@ -13,18 +13,17 @@ const sequelize = new Sequelize(
 	}
 );
 
-const Person = sequelize.define('Person', {
-	firstName: {
-		type: Sequelize.STRING,
-		allowNull: false,
-	},
-	lastName: {
-		type: Sequelize.STRING,
-		allowNull: true,
-	},
-});
+
+const definitions = require('./models')
+const models = {}
+for (const name in definitions) {
+	models[name] = sequelize.define(
+		definitions[name].table,
+		definitions[name].fields
+	)
+}
 
 module.exports = {
-	sequelize: sequelize,
-	Person: Person,
-};
+	connection: sequelize,
+	models
+}
