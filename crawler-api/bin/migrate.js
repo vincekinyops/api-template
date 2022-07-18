@@ -1,2 +1,2 @@
 var db = require('../db');
-db.sync();
+db.connection.sync();

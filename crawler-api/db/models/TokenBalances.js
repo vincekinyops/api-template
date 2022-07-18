@@ -1,7 +1,7 @@
 const DataTypes = require('sequelize')
 
 module.exports = {
-  table: 'contracts',
+  table: 'token_balances',
   fields: {
     chain_id: DataTypes.STRING,
     contract_address: DataTypes.STRING,

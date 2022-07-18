@@ -1,7 +1,15 @@
 const Person = require('./Person')
-const Contract = require('./Contract')
+const AddressTransactions = require('./AddressTransactions')
+const TokenBalances = require('./TokenBalances')
+const AddressNFTTokens = require('./AddressNFTTokens')
+const NFTTransactions = require('./NFTTransactions')
+const NFTMetadata = require('./NFTMetadata')
 
 module.exports = {
   Person,
-  Contract
+  AddressTransactions,
+  TokenBalances,
+  AddressNFTTokens,
+  NFTTransactions,
+  NFTMetadata
 }

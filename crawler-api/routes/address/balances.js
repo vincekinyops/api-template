@@ -1,13 +1,11 @@
 const request = require("../../helpers/request")
 var db = require('../../db');
-const { Contract } = db.models
+const { TokenBalances } = db.models
 
-/* GET users listing. */
 const route = async function(req, res) {
   const { address, chainId } = req.params
 
-  const { data: result } = await request.get(`address/${address}/transactions_v2`, chainId)
-  console.log('111', result)
+  const { data: result } = await request.get(`address/${address}/balances_v2`, chainId)
   let data = {}
 
   try {
@@ -21,7 +19,7 @@ const route = async function(req, res) {
       if (result.data.items.length) {
         const saved = result.data.items.map((i) => {
           
-          return Contract.create({
+          return TokenBalances.create({
             ...data, tx_data: i
           })
         })

@@ -37,8 +37,8 @@ db.connection.sync()
       server.on('listening', onListening);
     });
   })
-  .catch(() => {
-    console.error('Database failed to initialize')
+  .catch((e) => {
+    console.error('Database failed to initialize', e)
   })
 
 /**
